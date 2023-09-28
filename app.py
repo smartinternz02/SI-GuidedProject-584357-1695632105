@@ -11,7 +11,7 @@ import requests
 
 app = Flask(__name__)
 app.secret_key = 'a'
-conn = ibm_db.connect("DATABASE=bludb; HOSTNAME=2f3279a5-73d1-4859-88f0-a6c3e6b4b907.c3n41cmd0nqnrk39u98g.databases.appdomain.cloud; PORT=30756; UID=qtn12861;PASSWORD=QTIm5WOxippzqxl1; SECURITY=SSL;SSLServerCertificate = DigiCertGlobalRootCA.crt", "", "")
+conn = ibm_db.connect("DATABASE=bludb; HOSTNAME=2f3279a5-73d1-4859-88f0-a6c3e6b4b907.c3n41cmd0nqnrk39u98g.databases.appdomain.cloud; PORT=30756; UID=qtn12861;PASSWORD=QTIm5WOxippzqxl1; SECURITY=SSL;SSLCertificate = DigiCertGlobalRootCA.crt", "", "")
 url = "https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send"
 @app.route("/")
 def index():
@@ -199,7 +199,7 @@ def sassignment():
             
             
             cos = ibm_boto3.resource("s3",ibm_api_key_id=COS_API_KEY_ID,ibm_service_instance_id=COS_INSTANCE_CRN, config=Config(signature_version="oauth"),endpoint_url=COS_ENDPOINT)
-            cos.meta.client.upload_file(Filename= filepath,Bucket='mybucket5',Key= u+x+".pdf")
+            cos.meta.client.upload_file(Filename= filepath,Bucket='mybucket9',Key= u+x+".pdf")
             msg = "Uploding Successful"
             ts = datetime.datetime.now()
             t = ts.strftime("%Y-%m-%d %H:%M:%S")
@@ -265,7 +265,7 @@ def marksassign(stdname):
                         ibm_service_instance_id=COS_INSTANCE_CRN,
                         config=Config(signature_version="oauth"),
                         endpoint_url=COS_ENDPOINT)
-    output = cos.list_objects(Bucket="mybucket5")
+    output = cos.list_objects(Bucket="mybucket9")
     output
     l=[]
     for i in range(0,len(output['Contents'])):
